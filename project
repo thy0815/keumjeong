@@ -1,2 +1,77 @@
- https://youtu.be/aM6miNJkNeI
- https://youtu.be/N1Vm0m5E2pE
+import matplotlib.pyplot as plt
+from matplotlib.image import imread
+
+import random
+
+pic = ['갑주어_고생대_.PNG', '공룡_중생대_.PNG', '매머드_신생대_.PNG', '방추충_고생대_.PNG',
+       '삼엽충_고생대_.PNG', '스트로마톨라이트_선캄브리아_.PNG', '암모나이트_중생대_.PNG', 
+       '디킨소니아_선캄브리아_.PNG', '필석_고생대_.PNG', '화폐석_신생대_.PNG']
+
+game = True
+
+nscore = 0
+score = 0
+
+#cho = input("이름 학습을 플레이하려면 1, 시대 학습을 플레이하려면 2를 입력해주세요.")
+
+while game == True :
+    
+    cho = input("이름 학습을 플레이하려면 1, 시대 학습을 플레이하려면 2를 입력해주세요.")
+    
+    if cho in "1, 2" :
+
+        while pic != [] :
+            a = random.randint(0, len(pic)-1)
+            play = pic.pop(a)
+            img = imread(play)
+            plt.imshow(img)
+            plt.show()
+
+            name = input("답을 입력해주세요. (학습을 중단하시려면 '그만'을 입력하세요)")
+
+            if name == "그만" :
+                print("학습을 중단하셨습니다. 현재까지 누적 점수는", nscore, "점 입니다.")
+                break
+
+            elif cho == '1' :
+                if name == play.split('_')[0] :
+                    print("정답입니다. +1")
+                    score += 1
+                    nscore += 1
+                else :
+                    print("오답입니다. -1",  "( 답 :", play.split('_')[0], ")")
+                    score -= 1
+                    nscore -= 1
+                    pic.append(play)
+
+            elif cho == '2' :
+                if name == play.split('_')[1] :
+                    print("정답입니다. +1")
+                    score += 1
+                    nscore += 1
+                else :
+                    print("오답입니다. -1",  "( 답 :", play.split('_')[1], ")")
+                    score -= 1
+                    nscore -= 1
+                    pic.append(play)        
+
+        print("학습 완료. 당신의 점수는", score, "점 입니다.(누적 점수 :", nscore, ")")
+        
+        new = input("새 게임을 시작하시겠습니까? 예 / 아니오")
+        
+        if new == '예' :
+            game = True
+            score = 0
+            pic = ['갑주어_고생대_.PNG', '공룡_중생대_.PNG', '매머드_신생대_.PNG', '방추충_고생대_.PNG',
+           '삼엽충_고생대_.PNG', '스트로마톨라이트_선캄브리아_.PNG', '암모나이트_중생대_.PNG', 
+           '디킨소니아_선캄브리아_.PNG', '필석_고생대_.PNG', '화폐석_신생대_.PNG']
+        else : 
+            game = False
+
+                
+    else :
+        game = False
+        print("입력이 잘못되었습니다.")
+        
+print("학습이 종료됩니다.")
+
