@@ -1,0 +1,59 @@
+0. 학번 : 2621
+
+[프로젝트 1 : classcard형식의 지구과학 암기 학습 게임]
+1)연구소 이름 : gold챠오니 도깨비 연구소
+
+2)연구소가 해결하려는 문제 : classcard형식의 지구과학 암기 학습 게임
+
+3)연구소의 깃헙 링크 : https://github.com/keumchaewon/keumjeong/blob/greatsong/project
+
+4-1)수정하거나 추가하고 싶은 내용
+연속적으로 맞추면 점수를 더 많이 받고 중단하거나 완료했을때 정답률을 알려줬으면 좋겠다.
+
+4-2)내가 기여한 내용
+if cho in "1, 2" :
+
+        while pic != [] :
+            a = random.randint(0, len(pic)-1)
+            play = pic.pop(a)
+            img = imread(play)
+            plt.imshow(img)
+            plt.show()
+
+            name = input("답을 입력해주세요. (학습을 중단하시려면 '그만'을 입력하세요)")
+           
+            if name == "그만" :
+                print("학습을 중단하셨습니다. 현재까지 누적 점수는", nscore, "점 입니다.")
+                break
+            
+            elif cho == '1' :
+                if name == play.split('_')[0] :
+                    print("정답입니다. +1")
+                    score += 1
+                    nscore += 1
+                    right += 1
+                else :
+                    print("오답입니다. -1",  "( 답 :", play.split('_')[0], ")")
+                    score -= 1
+                    nscore -= 1
+                    pic.append(play)
+                    wrong += 1
+
+            elif cho == '2' :
+                if name == play.split('_')[1] :
+                    print("정답입니다. +1")
+                    score += 1
+                    nscore += 1
+                     right += 1
+                else :
+                    print("오답입니다. -1",  "( 답 :", play.split('_')[1], ")")
+                    score -= 1
+                    nscore -= 1
+                    pic.append(play)
+                    wrong += 1
+
+        print("학습이 완료되었습니다. 최종점수", score, "점, 정답률은 "100*right/right + wrong"%,(누적 점수는", nscore, ")"점입니다.)
+5)내가 기여한 내용에 대한 설명
+맞춘문제와 틀린문제의 개수를 카운트하여 정답률을 알게 해주었다.
+
+6)내가 기여한 내용의 반영 여부 : 모른다
